@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import Badges from './components/badge';
-import './index.css';
+// import App from './components/App'; //Default component
+import Badges from './components/Badge';
+import 'bootstrap/dist/css/bootstrap.css'
+import './styles/global.css'
 
 const element = (
 	<div>
-		<App />
+		{/* <App /> */}
 		<Badges />
 	</div>
 );
