@@ -1,6 +1,6 @@
 import React from 'react';
 import header from '../images/badge-header.svg';
-import ava from '../images/logo.svg'
+import ava from '../images/logo.svg';
 import '../styles/Badge.css';
 
 class Badge extends React.Component {
@@ -11,20 +11,18 @@ class Badge extends React.Component {
 					<img src={header} alt="mini header" />
 				</div>
 				<div className="Badge__section-name">
-					<img
-						className="Badge__avatar"
-						src={ava}
-						alt="avatar"
-					/>
+					<img className="Badge__avatar" src={ava} alt="avatar" />
 					<h1>
-						Chikorita<br />Arcoiris
+						{this.props.formValues.firstName}
+						<br />
+						{this.props.formValues.lastName}
 					</h1>
 				</div>
 				<div className="Badge__section-info">
-					<p>Frontend Engineer</p>
-					<p>@carlosaepn</p>
+					<p>{this.props.formValues.jobTitle}</p>
+					<p>{this.props.formValues.email}</p>
 				</div>
-				<div className="Badge__footer">#carl0sarb0leda</div>
+				<div className="Badge__footer">{this.props.formValues.twitter}</div>
 			</div>
 		);
 	}
