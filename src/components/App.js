@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import logo from '../images/logo.svg';
-import '../styles/App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Badges from '../pages/Badges';
+import BadgeNew from '../pages/BadgeNew';
+import Layout from './Layout';
+import NotFound from '../pages/NotFound';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+function App() {
+	return (
+		<BrowserRouter>
+			<Layout>
+				<Switch>
+					<Route exact path="/badges" component={Badges} />
+					<Route exact path="/badges/new" component={BadgeNew} />
+					<Route component={NotFound} />
+				</Switch>
+			</Layout>
+		</BrowserRouter>
+	);
 }
 
 export default App;
