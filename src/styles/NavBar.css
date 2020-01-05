@@ -4,11 +4,14 @@
 	background-color: #1c3643;
 }
 
+.Navbar__links {
+	display: inline;
+}
+
 .Navbar__brand {
 	color: #ffffff;
-
-	display: flex;
 	align-items: center;
+	padding: 0.5rem;
 }
 
 .Navbar__brand:hover {
