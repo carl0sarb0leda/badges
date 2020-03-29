@@ -12,11 +12,11 @@ class BadgeForm extends React.Component {
 			console.log('ok');
 		} else console.log('nook');
 	};
-	handleSubmit = (event) => {
-		event.preventDefault(); //this function prevent the default value for type='submit' in <button>
-		console.log(`The form was submited`);
-		console.log(this.props.formValues);
-	};
+	// handleSubmit = (event) => {
+	// 	event.preventDefault(); //this function prevent the default value for type='submit' in <button>
+	// 	console.log(`The form was submited`);
+	// 	console.log(this.props.formValues);
+	// };
 	handlePDF = () => {
 		const input = document.getElementById('bad');
 
@@ -34,8 +34,7 @@ class BadgeForm extends React.Component {
 	render() {
 		return (
 			<div id="bad">
-				<h1>New Attendant</h1>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.props.onSubmit}>
 					<div className="form-group">
 						<label>First Name*</label>
 						<input
@@ -48,8 +47,9 @@ class BadgeForm extends React.Component {
 						/>
 					</div>
 					<div className="form-group">
-						<label>Last Name</label>
+						<label>Last Name*</label>
 						<input
+							required
 							onChange={this.props.onnnChange}
 							className="form-control"
 							type="text"
@@ -68,9 +68,8 @@ class BadgeForm extends React.Component {
 						/>
 					</div>
 					<div className="form-group">
-						<label>Job Title*</label>
+						<label>Job Title</label>
 						<input
-							required
 							onChange={this.props.onnnChange}
 							className="form-control"
 							type="text"
@@ -79,15 +78,14 @@ class BadgeForm extends React.Component {
 						/>
 					</div>
 					<div className="form-group">
-						<label>Website*</label>
+						<label>Website or Twitter</label>
 						<input
 							onChange={this.props.onnnChange}
 							placeholder="https://www.example.com"
-							pattern="https?://.+"
+							//pattern="https?://.+"
+							//type="url"
 							className="form-control"
-							type="url"
 							name="twitter"
-							required
 							value={this.props.formValues.twitter}
 						/>
 						<span className="validity" />
@@ -95,6 +93,7 @@ class BadgeForm extends React.Component {
 					<button onClick={this.handleClick} className="btn btn-primary">
 						Save
 					</button>
+					{this.props.error && <p className="text-danger">{this.props.error.message}</p>}
 				</form>
 			</div>
 		);

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/BadgesList.css';
 import { Link } from 'react-router-dom';
+import BadgesListItem from './BadgesListItem';
 
 class BadgesList extends React.Component {
 	render() {
@@ -16,21 +17,13 @@ class BadgesList extends React.Component {
 		}
 		return (
 			<div>
-				{this.props.dat.map((element) => {
+				{this.props.dat.map((badge) => {
 					return (
-						<div key={element.id}>
-							<div className="BadgesListItem">
-								<img className="BadgesListItem__avatar" src={element.avatarUrl} alt="Avatar" />
-								<div>
-									<p>
-										{element.firstName} {element.lastName}
-									</p>
-									<p>{element.email}</p>
-									<p>{element.twitter}</p>
-								</div>
-							</div>
-							<br />
-						</div>
+						<li key={badge.id}>
+							<Link to={`/badges/${badge.id}/edit`}>
+								<BadgesListItem badge={badge} />
+							</Link>
+						</li>
 					);
 				})}
 			</div>
