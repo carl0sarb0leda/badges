@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/BadgesList.css';
 import { Link } from 'react-router-dom';
 import BadgesListItem from './BadgesListItem';
+import Modal from './Modal';
 
 class BadgesList extends React.Component {
 	render() {
@@ -19,11 +20,22 @@ class BadgesList extends React.Component {
 			<div>
 				{this.props.dat.map((badge) => {
 					return (
-						<li key={badge.id}>
-							<Link to={`/badges/${badge.id}/edit`}>
+						<div key={badge.id}>
+							<li>
 								<BadgesListItem badge={badge} />
-							</Link>
-						</li>
+							</li>
+							<div>
+								<Link to={`/badges/${badge.id}/edit`}>
+									<button className="btn btn-info">Edit</button>
+								</Link>
+								<div>
+									<button onClick={() => this.props.onnClick(badge.id)} className="btn btn-danger">
+										Delete
+									</button>
+									<Modal isOpen={false} />
+								</div>
+							</div>
+						</div>
 					);
 				})}
 			</div>

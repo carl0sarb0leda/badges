@@ -23,6 +23,7 @@ class Badges extends React.Component {
 		// 	this.setState({ data: datas.people });
 		// }, 3000);
 		this.fetchData();
+		//setInterval(this.fetchData, 5000); //automatic data refresh
 	}
 
 	fetchData = async () => {
@@ -53,17 +54,29 @@ class Badges extends React.Component {
 			actualprops: this.props,
 			actualState: this.state
 		});
+		//this.fetchData();
 	}
 	componentWillUnmount() {
 		console.log(`5, componentWillUnmount`);
 		clearTimeout(this.timeID); //this is to avoid error and clean memory if setTimeout was not used during the state update
 	}
 
+	handleDeleteBadge = async (badgeId) => {
+		try {
+			await api.badges.remove(badgeId);
+			this.fetchData();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	render() {
-		if (this.state.loading === true) {
+		console.log(`2, render`);
+
+		if (this.state.loading === true && !this.state.data) {
 			return `⏳🧐Loading...`;
 		}
-		console.log(`2, render`);
+
 		if (this.state.error) {
 			return `${this.state.error}`;
 		}
@@ -86,7 +99,8 @@ class Badges extends React.Component {
 				</div>
 				<div className="Badges__List">
 					<div className="Badges__container">
-						<BadgesList dat={this.state.data} />
+						<BadgesList dat={this.state.data} onnClick={this.handleDeleteBadge} />
+						{this.state.loading && 'Loading...'}
 					</div>
 				</div>
 			</React.Fragment>
